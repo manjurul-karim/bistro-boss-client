@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -20,7 +21,7 @@ const githubAuthProvider = new GithubAuthProvider();
 const faceBookAuthProvider = new FacebookAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setuser] = useState(null);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
@@ -53,9 +54,16 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const updateUserProfile = (name, photo) => {
+   return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setuser(currentUser);
+      setUser(currentUser);
       console.log("current user", currentUser);
       setLoading(false);
     });
@@ -73,6 +81,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     signInWithGithub,
     signInWithFaceBook,
+    updateUserProfile
   };
 
   return (

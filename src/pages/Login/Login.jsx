@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, useActionData } from "react-router-dom";
+import {
+  Link,
+  useActionData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 import {
   loadCaptchaEnginge,
@@ -9,17 +15,17 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProvider";
-import {
-  getRedirectResult,
-  signInWithPopup,
-  signInWithRedirect,
-} from "firebase/auth";
+import { FacebookAuthProvider } from "firebase/auth";
 import { Helmet } from "react-helmet";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
   const {
     user,
     signIn,
@@ -44,17 +50,21 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        setSucess("login Sucessfull");
-        setError("");
-        form.reset();
+        Swal.fire({
+          title: "Logging SuccessFully",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
         navigate(from, { replace: true });
+        navigate('/')
       })
       .catch((error) => {
         setError(error.message);
       });
-    if (signIn) {
-      alert("User Logging Sucessfully");
-    }
   };
 
   const handleGoogleSignIn = () => {
@@ -63,7 +73,8 @@ const Login = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
 
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -73,6 +84,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -82,14 +94,15 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        // navigate(from, { replace: true });
 
-        navigate(from, { replace: true });
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
 
   const handlevalidateCaptcha = (e) => {
-    const user_captcha_value = captchaRef.current.value;
+    const user_captcha_value = e.target.value;
     console.log(user_captcha_value);
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
@@ -144,18 +157,12 @@ const Login = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input
+                  onBlur={handlevalidateCaptcha}
                   type="text"
                   placeholder="Type the Captcha"
                   name="captcha"
-                  ref={captchaRef}
                   className="input input-bordered"
                 />
-                <button
-                  onClick={handlevalidateCaptcha}
-                  className="btn btn-outline btn-xs mt-2"
-                >
-                  Validate Captcha
-                </button>
               </div>
               <div className="form-control mt-6">
                 {/* <button className="btn btn-primary">Login</button> */}
