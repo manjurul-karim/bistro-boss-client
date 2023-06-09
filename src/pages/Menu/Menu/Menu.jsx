@@ -6,8 +6,6 @@ import saladImg from "../../../assets/menu/salad-bg.jpg";
 import soupImg from "../../../assets/menu/soup-bg.jpg";
 import dessertImg from "../../../assets/menu/dessert-bg.jpeg";
 import Cover from "../../Shared/Cover/cover";
-import PopularMenu from "../../Home/PopularMenu/PopularMenu";
-import { Parallax } from "react-parallax";
 import useMenu from "../../../hooks/useMenu";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuCategory from "../MenuCategory/MenuCategory";
@@ -21,7 +19,7 @@ const Menu = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   const offered = menu.filter((item) => item.category === "offered");
   return (
-    <div>
+    <>
       <Helmet>
         <title>Bistro | Menu</title>
       </Helmet>
@@ -46,7 +44,7 @@ const Menu = () => {
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae distinctioa eum delectus ipsum odit dolor tempore nemo magnam tenetur."
         }
       ></MenuCategory>
-     
+
       {/* pizza menu */}
       <MenuCategory
         items={pizza}
@@ -56,7 +54,7 @@ const Menu = () => {
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae distinctioa eum delectus ipsum odit dolor tempore nemo magnam tenetur."
         }
       ></MenuCategory>
-      
+
       {/* salad menmu */}
       <MenuCategory
         items={salad}
@@ -66,7 +64,7 @@ const Menu = () => {
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae distinctioa eum delectus ipsum odit dolor tempore nemo magnam tenetur."
         }
       ></MenuCategory>
-     
+
       {/* soup menu */}
       <MenuCategory
         items={soup}
@@ -76,8 +74,7 @@ const Menu = () => {
           "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae distinctioa eum delectus ipsum odit dolor tempore nemo magnam tenetur."
         }
       ></MenuCategory>
-     
-    </div>
+    </>
   );
 };
 

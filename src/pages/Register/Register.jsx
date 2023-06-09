@@ -4,6 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const Register = () => {
   const {
     register,
@@ -15,19 +16,30 @@ const Register = () => {
   const { user, createUser, updateUserProfile } = useContext(AuthContext);
   // console.log(createUser);
 
-  const navigate =useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          console.log("userprofile info update");
-          reset();
-          Swal.fire("userprofile info update");
-          navigate('/')
+          const savedUser = {name : data.name , email: data.email}
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              'content-type' : 'application/json'
+            },
+            body: JSON.stringify(savedUser)
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.insertedId) {
+                reset();
+                Swal.fire("userprofile info update");
+                navigate("/");
+              }
+            });
         })
         .catch((error) => console.log(error));
     });
@@ -134,6 +146,7 @@ const Register = () => {
                 </span>
               </h2>
             </div>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

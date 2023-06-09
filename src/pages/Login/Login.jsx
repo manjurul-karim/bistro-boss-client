@@ -8,18 +8,18 @@ import {
 import { BsFacebook, BsGithub, BsGoogle } from "react-icons/bs";
 import Swal from "sweetalert2";
 
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
-  validateCaptcha,
-} from "react-simple-captcha";
+// import {
+//   loadCaptchaEnginge,
+//   LoadCanvasTemplate,
+//   LoadCanvasTemplateNoReload,
+//   validateCaptcha,
+// } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProvider";
-import { FacebookAuthProvider } from "firebase/auth";
+
 import { Helmet } from "react-helmet";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -34,9 +34,9 @@ const Login = () => {
     signInWithFaceBook,
   } = useContext(AuthContext);
 
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
+  // useEffect(() => {
+  //   loadCaptchaEnginge(6);
+  // }, []);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -60,46 +60,14 @@ const Login = () => {
           },
         });
         navigate(from, { replace: true });
-        navigate('/')
+        navigate("/");
       })
       .catch((error) => {
         setError(error.message);
       });
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
 
-        // navigate(from, { replace: true });
-        navigate("/");
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleGithubSignIn = () => {
-    signInWithGithub()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        navigate("/");
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleFaceBookSignIn = () => {
-    signInWithFaceBook()
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        // navigate(from, { replace: true });
-
-        navigate("/");
-      })
-      .catch((error) => console.log(error));
-  };
 
   const handlevalidateCaptcha = (e) => {
     const user_captcha_value = e.target.value;
@@ -152,7 +120,7 @@ const Login = () => {
                   className="input input-bordered"
                 />
               </div>
-              <div className="form-control">
+              {/* <div className="form-control">
                 <label className="label">
                   <LoadCanvasTemplate />
                 </label>
@@ -163,11 +131,11 @@ const Login = () => {
                   name="captcha"
                   className="input input-bordered"
                 />
-              </div>
+              </div> */}
               <div className="form-control mt-6">
                 {/* <button className="btn btn-primary">Login</button> */}
                 <button
-                  disabled={disabled}
+                  disabled={!disabled}
                   className="bg-[#D1A054] btn capitalize"
                   type="submit"
                 >
@@ -183,36 +151,7 @@ const Login = () => {
                 </span>
               </h2>
             </div>
-
-            <div className="flex flex-col  gap-2 mb-4  ">
-              <div className="px-4">
-                <button
-                  onClick={handleGoogleSignIn}
-                  className="flex  btn  btn-outline btn-block"
-                >
-                  <BsGoogle className="mr-2"></BsGoogle>{" "}
-                  <span className="text-xl hover:text-red-500">Google</span>
-                </button>
-              </div>
-              <div className="px-4 ">
-                <button
-                  onClick={handleGithubSignIn}
-                  className="flex  btn btn-outline btn-block"
-                >
-                  <BsGithub className="mr-2"></BsGithub>{" "}
-                  <span className="text-xl hover:text-red-500">Github</span>
-                </button>
-              </div>
-              <div className="px-4">
-                <button
-                  onClick={handleFaceBookSignIn}
-                  className="flex  btn btn-outline btn-block"
-                >
-                  <BsFacebook className="mr-2"></BsFacebook>{" "}
-                  <span className="text-xl hover:text-red-500">FaceBook</span>
-                </button>
-              </div>
-            </div>
+              <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
