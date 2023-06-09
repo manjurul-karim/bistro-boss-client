@@ -26,7 +26,7 @@ const Register = () => {
         .then(() => {
           const savedUser = { name: data.name, email: data.email };
           fetch(
-            https://bistro-boss-server-two-inky.vercel.app/users",
+            "https://bistro-boss-server-two-inky.vercel.app/users",
             {
               method: "POST",
               headers: {

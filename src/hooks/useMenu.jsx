@@ -21,7 +21,7 @@ const useMenu = () => {
     queryKey: ["menu"],
     queryFn: async () => {
       const res = await fetch(
-        https://bistro-boss-server-two-inky.vercel.app/menu"
+        "https://bistro-boss-server-two-inky.vercel.app/menu"
       );
       return res.json();
     },
