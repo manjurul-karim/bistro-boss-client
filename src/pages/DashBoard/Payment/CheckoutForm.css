@@ -13,10 +13,10 @@ html {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
-form {
+/* form {
   max-width: 800px;
   margin: 80px auto;
-}
+} */
 
 label {
   color: #6b7c93;
@@ -66,7 +66,7 @@ select {
   border: none;
   font-size: 18px;
   margin: 10px 0 20px 0;
-  max-width: 100%;
+  /* max-width: 100%; */
   padding: 10px 14px;
   box-shadow: rgba(50, 50, 93, 0.14902) 0px 1px 3px,
     rgba(0, 0, 0, 0.0196078) 0px 1px 0px;
@@ -74,7 +74,7 @@ select {
   background: white;
   color: #424770;
   letter-spacing: 0.025em;
-  width: 500px;
+  /* width: 500px; */
 }
 
 input::placeholder {
