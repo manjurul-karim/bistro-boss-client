@@ -22,7 +22,7 @@ const FoodCard = ({ item }) => {
         email: user.email,
       };
       fetch(
-        "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/carts",
+        https://bistro-boss-server-two-inky.vercel.app/carts",
         {
           method: "POST",
           headers: {

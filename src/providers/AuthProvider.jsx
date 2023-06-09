@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         axios
           .post(
-            "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/jwt",
+            https://bistro-boss-server-two-inky.vercel.app/jwt",
             { email: currentUser.email }
           )
           .then((data) => {
