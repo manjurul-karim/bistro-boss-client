@@ -5,7 +5,7 @@ const useMenu = () => {
   // const [loading, setLoading] = useState(true);
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/menu")
+  //   fetch("https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/menu")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setMenu(data);
@@ -13,14 +13,20 @@ const useMenu = () => {
   //     });
   // }, []);
 
-  const { data: menu = [], isLoading: loading ,refetch } = useQuery({
+  const {
+    data: menu = [],
+    isLoading: loading,
+    refetch,
+  } = useQuery({
     queryKey: ["menu"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/menu");
+      const res = await fetch(
+        "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/menu"
+      );
       return res.json();
     },
   });
-  return [menu, loading , refetch];
+  return [menu, loading, refetch];
 };
 
 export default useMenu;

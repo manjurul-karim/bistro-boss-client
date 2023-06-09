@@ -22,13 +22,16 @@ const SocialLogin = () => {
           name: loggedUser.displayName,
           email: loggedUser.email,
         };
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(savedUser),
-        })
+        fetch(
+          "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(savedUser),
+          }
+        )
           .then((res) => res.json())
           .then(() => {
             navigate(from, { replace: true });
@@ -46,13 +49,16 @@ const SocialLogin = () => {
           name: loggedUser.displayName,
           email: loggedUser.email,
         };
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(savedUser),
-        })
+        fetch(
+          "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(savedUser),
+          }
+        )
           .then((res) => res.json())
           .then(() => {
             navigate(from, { replace: true });
@@ -70,13 +76,16 @@ const SocialLogin = () => {
           name: loggedUser.displayName,
           email: loggedUser.email,
         };
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(savedUser),
-        })
+        fetch(
+          "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(savedUser),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {

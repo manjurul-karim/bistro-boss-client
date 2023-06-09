@@ -21,17 +21,20 @@ const FoodCard = ({ item }) => {
         image,
         email: user.email,
       };
-      fetch("http://localhost:5000/carts", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(cartItem),
-      })
+      fetch(
+        "https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/carts",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(cartItem),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            refetch ();  //refetch cart to update ther number of items in the cart
+            refetch(); //refetch cart to update ther number of items in the cart
             Swal.fire({
               position: "center",
               icon: "success",

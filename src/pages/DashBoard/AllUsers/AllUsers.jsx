@@ -15,9 +15,12 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://bistro-boss-server-p5trylld3-manjurul-karim.vercel.app/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -56,7 +59,7 @@ const AllUsers = () => {
           <div className="overflow-x-auto">
             <table className="table w-full">
               {/* head */}
-              <thead style={{backgroundColor: '#D1A054'}} className="thead">
+              <thead style={{ backgroundColor: "#D1A054" }} className="thead">
                 <tr>
                   <th>#</th>
                   <th>Name</th>
